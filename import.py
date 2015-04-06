@@ -1,5 +1,6 @@
 import csv
 import ast
+from urllib2 import Request, urlopen, URLError
 
 
 def readInput():
@@ -34,6 +35,20 @@ def writeCSV(array):
 data = readInput()
 ageTimeArray = addAgeCalculation(data)
 writeCSV(ageTimeArray)
+
+
+
+
+
+# country of origin -> extention language/culture/religion
+# travel time over course of life / birth death points
+# look at moving countries over course of life by profession
+# what countires are famous for professions
+# find a country match -> gdp -> 
+# 
+# 
+# 
+ 
 
 
 
