@@ -32,9 +32,63 @@ def writeCSV(array):
 			spamwriter = csv.DictWriter(csvfile, fieldnames=fieldnames)
 			spamwriter.writerow({'age':array[index]["age"] , 'year of birth':array[index]["year"]})
     
+def experiment1(data):
+	#test to see which countries have the highest common profession
+	countries = {}
+	for index in range(len(data)):
+		birthCountry = data[index]["b.country"]
+		if birthCountry in countries:
+			countries[birthCountry][str(data[index]["prof"])]+=1
+			countries[birthCountry]["total"]+=1
+
+		else:
+			countries[birthCountry]={"0":0,
+									 "1":0,
+									 "2":0,
+									 "3":0,
+									 "4":0,
+									 "5":0,
+									 "6":0,
+									 "total":1}
+			countries[birthCountry][str(data[index]["prof"])]+=1
+
+	for key in countries:
+		total = countries[key]["total"]
+		curMax = 0
+		mostcommonprof = 0
+		# if float(countries[key]["0"])/total>curMax:
+		# 	curMax = float(countries[key]["0"])/total
+		# 	mostcommonprof = 0
+		if float(countries[key]["1"])/total>curMax:
+			curMax = float(countries[key]["0"])/total
+			mostcommonprof = 1
+		if float(countries[key]["2"])/total>curMax:
+			curMax = float(countries[key]["0"])/total
+			mostcommonprof = 2
+		if float(countries[key]["3"])/total>curMax:
+			curMax = float(countries[key]["0"])/total
+			mostcommonprof = 3
+		if float(countries[key]["4"])/total>curMax:
+			curMax = float(countries[key]["0"])/total
+			mostcommonprof = 4
+		if float(countries[key]["5"])/total>curMax:
+			curMax = float(countries[key]["0"])/total
+			mostcommonprof = 5
+		if float(countries[key]["6"])/total>curMax:
+			curMax = float(countries[key]["0"])/total
+			mostcommonprof = 6
+		if (countries[key]["total"]>100):
+			countries[key]["mostCommonProf"]=mostcommonprof
+			countries[key]["ratio"]=curMax
+			print key + " " + str(mostcommonprof) + ' ' + str(curMax)
+
+	return countries
+
+
 data = readInput()
 ageTimeArray = addAgeCalculation(data)
 writeCSV(ageTimeArray)
+countries = experiment1(data)
 
 
 
